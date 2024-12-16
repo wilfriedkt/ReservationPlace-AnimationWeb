@@ -1,0 +1,364 @@
+:root {
+    --primary-color: #f51010;
+    --secondary-color: #6a1b9a;
+    --accent-color: #ff6b6b;
+    --background-light: #f4f6ff;
+    --text-color: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    line-height: 1.4;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    margin-bottom: 30px;
+}
+
+
+
+/* Calendrier Interactif */
+.calendar {
+    width: 80%;
+    margin-left: 10%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    animation: grandTitre 0.5s ease-out;
+}
+
+.calendar-day {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    text-align: center;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.calendar-day:hover {
+    background-color: var(--secondary-color);
+    color: white;
+    transform: scale(1.1) rotate(5deg);
+}
+
+.available {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* Pour les tablettes */
+@media (max-width: 1024px) {
+.calendar {
+grid-template-columns: repeat(7, 1fr); /* Toujours 7 colonnes */
+gap: 8px;
+padding: 15px;
+}
+
+.calendar-day,
+.calendar-day-name {
+font-size: 0.9rem;
+padding: 12px;
+}
+
+.calendar-header {
+font-size: 1.4rem;
+}
+
+}
+
+/* Pour les mobiles */
+@media (max-width: 768px) {
+.paragraphe{
+font-size: 12px;
+}
+h3{
+font-size: 13px;
+}
+.calendar {
+grid-template-columns: repeat(7, 1fr); /* Toujours 7 colonnes */
+gap: 6px;
+padding: 10px;
+}
+
+.calendar-day,
+.calendar-day-name {
+font-size: 0.8rem;
+padding: 10px;
+}
+
+.calendar-header {
+font-size: 1.2rem;
+}
+.step {
+padding: 15px;
+width: 20%;
+}
+}
+
+/* Pour les très petits mobiles */
+@media (max-width: 480px) {
+.paragraphe{
+font-size: 12px;
+}
+h3{
+font-size: 12px;
+}
+.calendar {
+grid-template-columns: repeat(7, 1fr); /* Toujours 7 colonnes */
+gap: 5px;
+padding: 8px;
+}
+
+.calendar-day,
+.calendar-day-name {
+font-size: 0.7rem;
+padding: 8px;
+}
+
+.calendar-header {
+font-size: 1rem;
+}
+.step {
+padding: 15px;
+width: 10%;
+}
+}
+
+
+
+/* Header stylisé */
+.header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: grandTitre 1s ease-out;
+}
+
+/* Processus de Réservation */
+.reservation-process {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.step {
+    width: 250px;
+    margin: 0 15px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.step:hover {
+    transform: translateY(-10px) rotate(2deg);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+#icone:hover{
+    color: #6a1b9a;
+}
+
+.step-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.step:hover .step-icon {
+    transform: scale(1.2) rotate(360deg);
+}
+
+/* Formulaire de Réservation */
+.reservation-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    animation: grandTitre 0.5s ease-out;
+}
+
+.form-step {
+    display: none;
+    animation: slideIn 0.5s ease-out;
+}
+
+.form-step.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(74,20,140,0.1);
+}
+
+.form-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background-color: #f0f0f0;
+    color: var(--text-color);
+}
+
+/* Confirmation */
+.confirmation {
+    display: none; /* Caché initialement */
+    text-align: center;
+    color: var(--success-color);
+    animation: confimation 1.5s infinite;
+}
+
+
+#confirmation, .h2Confirmation{
+    color: green;
+
+}
+
+/* Événements */
+.events-section {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 50px 10%;
+}
+
+.event-card {
+    width: 300px;
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.event-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px #f51010;
+}
+
+.event-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.event-card-content {
+    padding: 20px;
+}
+
+#loader {
+    display: none; /* Caché initialement */
+    animation: rotate 2s linear infinite;
+   margin-left: 45%;
+}
+
+/* Animations */
+
+/* Animation barre load */
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Animations Titre*/
+@keyframes grandTitre {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes confimation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+
+/* Animations formulaires */
+@keyframes slideIn {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}

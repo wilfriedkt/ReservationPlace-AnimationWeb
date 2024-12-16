@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation d'Événements</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>Réservez Vos Expériences Uniques</h1>
+            <p>Découvrez, Sélectionnez, Vivez des Moments Extraordinaires</p>
+        </div>
+    </header>
+
+    <!-- Processus de Réservation -->
+    <div class="reservation-process">
+        <div class="step">
+            <i class="fas fa-calendar-alt step-icon" id="icone"></i>
+            <h3>Sélection d'Événement</h3>
+            <p class="paragraphe">Choisissez votre événement préféré</p>
+        </div>
+        <div class="step">
+            <i class="fas fa-user step-icon" id="icone"></i>
+            <h3>Informations Personnelles</h3>
+            <p class="paragraphe">Remplissez vos détails personnels</p>
+        </div>
+        <div class="step">
+            <i class="fas fa-credit-card step-icon" id="icone"></i>
+            <h3>Paiement</h3>
+            <p class="paragraphe">Finalisez votre réservation</p>
+        </div>
+    </div><br>
+
+    <section id="calendar" class="calendar-section">
+        <div class="header-content"><h1 style="font-size: 40px;">Calendrier</h1></div><br>
+        
+        <div class="calendar">
+            <!-- Jours du calendrier seront générés dynamiquement -->
+        </div>
+    </section>
+
+    <br>
+
+    <!-- Événements -->
+    <div class="header-content"><h1 style="font-size: 40px; margin-top: 40px;">Nos Évènements</h1></div>
+    <section class="events-section">
+        <div class="event-card" data-event="Festival Musical">
+            <img src="../image/music.jpg" alt="Festival Musical">
+            <div class="event-card-content">
+                <h3>Festival Musical</h3>
+                <p class="paragraphe">Vibrez au rythme des meilleures performances</p>
+            </div>
+        </div>
+        <div class="event-card" data-event="Conférence Tech">
+            <img src="../image/tech.jpg" alt="Conférence Tech">
+            <div class="event-card-content">
+                <h3>Conférence Innovation</h3>
+                <p class="paragraphe">Découvrez les tendances technologiques</p>
+            </div>
+        </div>
+        <div class="event-card" data-event="Atelier Créatif">
+            <img src="../image/creatif.jpg" alt="Atelier Art">
+            <div class="event-card-content">
+                <h3>Atelier Créatif</h3>
+                <p class="paragraphe">Libérez votre créativité</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulaire de Réservation -->
+    <div class="reservation-form">
+        <form id="multi-step-form">
+            <!-- Étape 1: Sélection d'Événement -->
+            <div class="form-step active" id="step-event">
+                <h2>Sélectionnez un Événement</h2>
+                <div class="form-group">
+                    <label>Événement</label>
+                    <select id="event-select" required>
+                        <option value="">Choisissez un événement</option>
+                        <option>Festival Musical</option>
+                        <option>Conférence Innovation</option>
+                        <option>Atelier Créatif</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" required>
+                </div>
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-primary next-step">Suivant</button>
+                </div>
+            </div>
+
+            <!-- Étape 2: Informations Personnelles -->
+            <div class="form-step" id="step-personal">
+                <h2>Vos Informations Personnelles</h2>
+                <div class="form-group">
+                    <label>Nom Complet</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Numéro de Téléphone</label>
+                    <input type="tel" required>
+                </div>
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-secondary prev-step">Précédent</button>
+                    <button type="button" class="btn btn-primary next-step">Suivant</button>
+                </div>
+            </div>
+
+            <!-- Étape 3: Paiement -->
+            <div class="form-step" id="step-payment">
+                <h2>Paiement</h2>
+                <div class="form-group">
+                    <label>Nom sur la Carte</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Numéro de Carte</label>
+                    <input type="text" pattern="\d{16}" required>
+                </div>
+                <div class="form-group">
+                    <label>Date d'Expiration</label>
+                    <input type="text" placeholder="MM/AA" pattern="\d{2}/\d{2}" required>
+                </div>
+                <div class="form-group">
+                    <label>CVV</label>
+                    <input type="text" pattern="\d{3}" required>
+                </div>
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-secondary prev-step">Précédent</button>
+                    <button type="submit" id="payButton" class="btn btn-primary">Confirmer la Réservation</button>
+                </div>
+            </div>
+
+            <!-- Loader SVG -->
+            <svg id="loader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256" fill-rule="nonzero">
+                <g fill="#4CAF50" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" 
+                stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                    <g transform="translate(245.76,0) rotate(90) scale(5.12,5.12)">
+                        <path d="M25,3c-2.75,0 -5,2.25 -5,5c0,2.75 2.25,5 5,5c2.75,0 5,-2.25 5,-5c0,-2.75 -2.25,-5 -5,-5zM25,5c1.66797,0 3,1.33203 3,3c0,1.66797 -1.33203,3 -3,3c-1.66797,0 -3,-1.33203 -3,-3c0,-1.66797 1.33203,-3 3,-3zM37,7.5c-3.02734,0 -5.5,2.47266 -5.5,5.5c0,3.02734 2.47266,5.5 5.5,5.5c3.02734,0 5.5,-2.47266 5.5,-5.5c0,-3.02734 -2.47266,-5.5 -5.5,-5.5zM13,8.5c-2.47266,0 -4.5,2.02734 -4.5,4.5c0,2.47266 2.02734,4.5 4.5,4.5c2.47266,0 4.5,-2.02734 4.5,-4.5c0,-2.47266 -2.02734,-4.5 -4.5,-4.5zM37,9.5c1.94531,0 3.5,1.55469 3.5,3.5c0,1.94531 -1.55469,3.5 -3.5,3.5c-1.94531,0 -3.5,-1.55469 -3.5,-3.5c0,-1.94531 1.55469,-3.5 3.5,-3.5zM13,10.5c1.39063,0 2.5,1.10938 2.5,2.5c0,1.39063 -1.10937,2.5 -2.5,2.5c-1.39062,0 -2.5,-1.10937 -2.5,-2.5c0,-1.39062 1.10938,-2.5 2.5,-2.5zM8,21c-2.19922,0 -4,1.80078 -4,4c0,2.19922 1.80078,4 4,4c2.19922,0 4,-1.80078 4,-4c0,-2.19922 -1.80078,-4 -4,-4zM8,23c1.11719,0 2,0.88281 2,2c0,1.11719 -0.88281,2 -2,2c-1.11719,0 -2,-0.88281 -2,-2c0,-1.11719 0.88281,-2 2,-2zM42,23c-1.09375,0 -2,0.90625 -2,2c0,1.09375 0.90625,2 2,2c1.09375,0 2,-0.90625 2,-2c0,-1.09375 -0.90625,-2 -2,-2zM13,33.5c-1.92187,0 -3.5,1.57813 -3.5,3.5c0,1.92188 1.57813,3.5 3.5,3.5c1.92188,0 3.5,-1.57812 3.5,-3.5c0,-1.92187 -1.57812,-3.5 -3.5,-3.5zM37,34.5c-1.36719,0 -2.5,1.13281 -2.5,2.5c0,1.36719 1.13281,2.5 2.5,2.5c1.36719,0 2.5,-1.13281 2.5,-2.5c0,-1.36719 -1.13281,-2.5 -2.5,-2.5zM13,35.5c0.83984,0 1.5,0.66016 1.5,1.5c0,0.83984 -0.66016,1.5 -1.5,1.5c-0.83984,0 -1.5,-0.66016 -1.5,-1.5c0,-0.83984 0.66016,-1.5 1.5,-1.5zM37,36.5c0.28906,0 0.5,0.21094 0.5,0.5c0,0.28906 -0.21094,0.5 -0.5,-0.5zM25,39c-1.64453,0 -3,1.35547 -3,3c0,1.64453 1.35547,3 3,3c1.64453,0 3,-1.35547 3,-3c0,-1.64453 -1.35547,-3 -3,-3zM25,41c0.5625,0 1,0.4375 1,1c0,0.5625 -0.4375,1 -1,1c-0.5625,0 -1,-0.4375 -1,-1c0,-0.5625 0.4375,-1 1,-1z"></path>
+                    </g>
+                </g>
+            </svg>
+
+
+            <!-- Confirmation -->
+            <div class="form-step confirmation" id="step-confirmation">
+                <i class="fas fa-check-circle fa-4x" id="confirmation"></i>
+                <h2 class="h2Confirmation">Réservation Confirmée !</h2>
+                <p>Merci pour votre réservation. Un email de confirmation vous sera envoyé.</p>
+            </div>
+        </form>
+    </div>
+
+    <script src="../javaScript/js.js"></script>
+
+</body>
+</html>
